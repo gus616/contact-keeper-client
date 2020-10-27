@@ -1,9 +1,26 @@
-import React, {useState} from 'react'
- const Login = () => {
+import React, {useState, useContext, useEffect} from 'react';
+import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
+import { Link } from 'react-router-dom';
+ const Login = (props) => {
+    const authContext = useContext(AuthContext);
+    const alertContext = useContext(AlertContext);
+    const { setAlert } = alertContext;
+    const { login, error, clearErrors, isAuthenticated } = authContext;
     const [user, setUser] = useState({
         email: '',
         password: '',
     });
+
+    useEffect(()=>{
+        if(isAuthenticated){
+            props.history.push('/');
+        }
+        if(error === 'invalid credentials' || error === 'invalid password'){
+            setAlert(error, 'danger');
+            clearErrors();
+        }
+    },[error, isAuthenticated, props.history]);
 
 
     const onChange = e =>{
@@ -12,7 +29,14 @@ import React, {useState} from 'react'
 
     const onSubmit = e=>{
         e.preventDefault();
-        console.log('logged in');
+        //console.log('logged in');
+        if(email === ''){
+            setAlert('please enter email', 'danger');
+        } else if(password ===''){
+            setAlert('please enter password', 'danger')
+        } else {
+            login({email, password});
+        }
     };
 
     const { email, password} = user;
@@ -30,6 +54,7 @@ import React, {useState} from 'react'
                 </div>
                 <input type="submit" value="Login" className="btn btn-primary btn-block"/>
             </form>
+            <p>Don't have an account? Register <Link to='/register'>here</Link></p>
         </div>
     )
 }
