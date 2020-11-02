@@ -28,12 +28,12 @@ const ContactForm = () => {
         e.preventDefault();
         if(current === null){
             addContact(contact);
-            setContact({
+            /*setContact({
                 name:'',
                 email:'',
                 phone:'',
                 type:'personal'
-            });
+            });*/
         } else {
             updateContact(contact);
             clearCurrent();

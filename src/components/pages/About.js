@@ -5,7 +5,7 @@ const About = () => {
         <div>
             <h1>About this App</h1>
             <p className="my-1">
-                This is a full-stack React app developed with the MERN Stack by Gustavo Velazquez C.
+                This is a full-stack React app developed with the MERN Stack by Gustavo Velazquez C. 
             </p>
             <p className="bg-dark p">
                 <strong>Version: </strong> 1.0.0 <br/>
