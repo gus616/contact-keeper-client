@@ -27,7 +27,8 @@ const ContactState = props => {
  const [state, dispatch] = useReducer(contactReducer, initialState);
  //Get Contacts
  const getContacts = async() => {
-     const url = 'http://localhost:5000/api/contacts';
+    // const url = 'http://localhost:5000/api/contacts';
+    const url = 'https://warm-sands-08760.herokuapp.com/api/contacts' 
      try{
         const res = await axios.get(url);
         dispatch({
@@ -44,7 +45,8 @@ const ContactState = props => {
  //Add contact
   const addContact = async contact =>{
       //contact.id = uuidv4();
-      const url = 'http://localhost:5000/api/contacts';
+      //const url = 'http://localhost:5000/api/contacts';
+      const url = 'https://warm-sands-08760.herokuapp.com/api/contacts'; //prod
       const config = {
           headers: {
               "Content-Type": "application/json"
@@ -60,7 +62,8 @@ const ContactState = props => {
   };
  //Delete contact
  const deleteContact = async id =>{
-     const url = `http://localhost:5000/api/contacts/${id}`;
+     //const url = `http://localhost:5000/api/contacts/${id}`; Dev
+     const url =`https://warm-sands-08760.herokuapp.com/api/contacts/${id}` //Prod
      try{
        await axios.delete(url);
        dispatch({type: DELETE_CONTACT, payload: id});
@@ -84,7 +87,8 @@ const updateContact = async contact =>{
                 'Content-Type': 'application/json'
             }
         };
-        const url = `http://localhost:5000/api/contacts/${contact._id}`;
+        //const url = `http://localhost:5000/api/contacts/${contact._id}`;
+        const url = `https://warm-sands-08760.herokuapp.com/api/contacts/${contact._id}`;
         const res = await axios.put(url, contact, config);
         dispatch({type: UPDATE_CONTACT, payload: res.data});
     } catch(err){

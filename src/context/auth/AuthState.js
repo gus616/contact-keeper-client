@@ -31,7 +31,8 @@ const AuthState = props => {
             setAuthToken(localStorage.token);
       //  }
         try{
-            const url = 'http://localhost:5000/api/auth';
+            //const url = 'http://localhost:5000/api/auth';
+            const url = 'https://warm-sands-08760.herokuapp.com/api/auth';
             const res = await axios.get(url);
 
             dispatch({ 
@@ -54,7 +55,8 @@ const AuthState = props => {
         }
 
         try{
-            const url = 'http://localhost:5000/api/users';
+            //const url = 'http://localhost:5000/api/users';
+            const url = 'https://warm-sands-08760.herokuapp.com/api/users';
             const res = await axios.post(url, formData, config);
             dispatch({
                 type: REGISTER_SUCCESS,
@@ -78,7 +80,8 @@ const AuthState = props => {
             }
         };
         try{
-            const url = 'http://localhost:5000/api/auth';
+            //const url = 'http://localhost:5000/api/auth';
+            const url ='https://warm-sands-08760.herokuapp.com/api/auth';
             const res = await axios.post(url, formData, config);
             dispatch({
                 type: LOGIN_SUCCESS,
